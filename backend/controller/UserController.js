@@ -21,5 +21,18 @@ export const registerFunction =(async(req,res)=>{
             res.json({"err":1,"msg":"user already exist"})
         }
     })
-    console.log(req.body)
+    console.log(req.body) //-->for showing added data in console
+})
+
+export const getAlluserFunction =(async(req,res)=>{
+    userCollection.find((err,data)=>{
+        if(err){
+            res.json({"err":1,"msg":"err no user"})
+        }
+        else{
+            res.json({"err":0,"msg":"user found all",data:data})
+            console.log(data)//-->finding all user
+        }
+    })
+    console.log(res.body)//-->undefined because data present in data not req.cody
 })
