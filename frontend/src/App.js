@@ -1,7 +1,8 @@
 import './App.css';
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
 import Registeration from "../src/components/Registeration";
-import Login from "../src/components/Login"
+import Login from "../src/components/Login";
+import Dashboard from './components/Dashboard';
 function App() {
   return (
     <>
@@ -9,6 +10,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Login/>}></Route>
         <Route path='/registration' element={<Registeration/>} />
+        <Route path="/dashboard" element={<Dashboard/>}/>
       </Routes>
     </Router>
     </>
