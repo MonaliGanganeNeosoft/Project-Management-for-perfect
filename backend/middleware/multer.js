@@ -4,9 +4,9 @@ const storage = multer.diskStorage({
     destination:(req,file,cb)=>{
         cb(null,DIR);
     },
-    filename:(req,file,cb)=>{
-        const fileName = file.originalname.toLocaleLowerCase().split('').join('-');
-        cb(null,"user"+'-'+fileName)
+    filename: (req, file, cb) => {
+        const fileName = file.originalname.toLowerCase().split(' ').join('-');
+        cb(null,"user"+"-"+fileName)
     }
 });
 export const upload = multer({
