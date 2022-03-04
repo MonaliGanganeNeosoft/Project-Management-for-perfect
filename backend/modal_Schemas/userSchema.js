@@ -24,9 +24,9 @@ const userSchema = new mongoose.Schema({
         required:[true,"Password is required"],
         minlength:[5,"password should be grater than 8 char"]
     },
-    // profile:{
-    //     type:String,
-    //     required:"true"
-    // }
+    profile:{
+        type:String,
+        required:"true"
+    }
 }) 
 export default mongoose.model("userCollection",userSchema)
