@@ -61,6 +61,7 @@ export default function Registeration() {
             registerService(formData).then(res=>{
                 if(res.data.err == 0){
                     console.log(res.data.msg,"line 48");
+                    console.log(res.data)
                     navigate("/")
                 }
                 else{
