@@ -6,7 +6,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import Navbar from './Navbar';
+import { Alert, Button, Grid } from '@mui/material';
 import { fetchprojectServiceAll } from '../config/projectService';
+import { Card } from 'react-bootstrap';
 
 // import { useSelector,useDispatch } from 'react-redux';
 const regForName = RegExp(/^[a-zA-Z]/);
@@ -51,6 +53,14 @@ const Dashboard = () => {
    setflag({...flag,flag:true}) 
   }
 
+  //deleteProject
+  const deleteProject=()=>{
+
+  }
+  //editproject
+  const editProject = ()=>{
+
+  }
   //filter for all self and other by comparing email
   const ApplyFilter = (value)=>{
     if(value === "Self"){
@@ -91,8 +101,52 @@ const Dashboard = () => {
             <span><input type="radio" name='filter' onClick={()=>ApplyFilter("Other")}/>Other</span>
           </div>
       </div>
+
+      <div className='mt-3'>
+        <div>
+          {project.length > 0 ?
+            <>
+            <Grid container spacing={2}>
+              {
+                project.map((ele,index)=>
+                <Grid item xs={12} sm={6} md={4} key={ele._id}>
+                  <Card className="prodContainer">
+                    <Card.Body>
+                      <Card.Title className='font-weight-bold'>Project Title : {ele.title}</Card.Title>
+                      <Card.Text>
+                        <div className='mt-3'>
+                          <span className='font-weight-bold'>Github Link : </span><a href={ele.github} target="_blank">{ele.github}</a>
+                          <span className='font-weight-bold'>Demo Link : </span><a href={ele.demo} target="_blank">view Demo</a><br/>
+                          <span className='font-weight-bold'>Description : </span><span dangerouslySetInnerHTML={{__html:ele.description}}></span>
+                        </div>
+                        {/* //-->if previousle added project there then its showing only see details btn */}
+                        <div className='mt-2 row d-flex justify-content-center'>
+                          {ele.user_email == user.email && 
+                            <Button varient="contained" color="success" onClick={()=>editProject(ele,index)}>Edit</Button>
+                          }
+                          <Button variant="contained" color="success" className="mx-2" onClick={() => navigate(`/projectDetails?_id=${ele._id}`)}>See Details</Button>
+                          {ele.user_email == user.email &&
+                          <Button varient="contained" color="success" onClick={()=>deleteProject(ele._id)}>Delete</Button>
+                          }
+                        </div>
+                       
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </Grid>
+              )}
+            </Grid>
+            </>
+            :
+            <div>
+              <img src='images/hello.jpg' width="100%" height="455px"/>
+            </div>
+          }
+        </div>
+      </div>
     </>:<Navigate to="/"></Navigate>//-->navigate to login 
     }
+
 
     <Modal show={showModel} onHide={handlecolse}>
     </Modal>
