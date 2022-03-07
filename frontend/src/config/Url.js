@@ -1,1 +1,1 @@
-export const MAIN_URL = "http://localhost:5000/user/"
+export const MAIN_URL = "http://localhost:5000/"
